@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width = device-width, initial-scale=1.0">
+    <title>Responsive 01</title>
+    <style>
+        body {
+            color: blue;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                font-size: 75%;
+                color: orange;
+            }
+        }
+
+        @media (orientation: landscape) {
+            p {
+                background-color: yellow;
+            }
+
+        }
+
+        @media print {
+            img {
+                display: none;
+                /* Takes away img, visibility:collapse might be the same as well
+                but it is not suitable to be used here */
+                /* visibility: hidden;  */
+                /* ^ allows  the user to print without printing the image
+                as it is hidden, but it will still be there*/
+            }
+        }
+    </style>
+    <script>"use strict";</script>
+</head>
+
+<body>
+    <h1>Viewport is set</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu accumsan lacus. Donec maximus sem vel eros
+        laoreet, id accumsan dui eleifend. Etiam ut elementum ipsum, non pharetra nisl. In accumsan maximus interdum.
+        Nunc lectus augue, feugiat non tellus ac, porta eleifend enim. Suspendisse mollis est quis massa blandit mollis.
+        Nunc volutpat neque sit amet magna consequat auctor. Pellentesque et varius felis, eget placerat nibh. In semper
+        d augue in rhoncus finibus. Aliquam erat volutpat. Sed euismod volutpat arcu tincidunt suscipit. Nullam interdum
+        justo quam, vel aliquam sem vestibulum eu. Maecenas varius ultrices dui, id pellentesque nulla faucibus at.
+        Quisque in varius quam, sit amet sodales nisl. </p>
+
+    <div style="overflow-x:auto;">
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+            </tr>
+            <tr>
+                <td>Jill</td>
+                <td>Smith</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>Eve</td>
+                <td>Jackson</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+            </tr>
+            <tr>
+                <td>Adam</td>
+                <td>Johnson</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+            </tr>
+        </table>
+    </div>
+    <img src="../img/testimage.jpg" alt="test picture" style="max-width : 100%">
+
+</body>
+
+</html>

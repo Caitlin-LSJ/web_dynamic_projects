@@ -1,0 +1,136 @@
+<!DOCTYPE html>>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="witdth=device-width, initial-scale=1.0">
+    <title>JavaScript 01</title>
+    <script>
+        "use strict";
+        function hello1() {
+            // window.alert("hello"); >> this gives a window dialogue
+            // alert("Hello 1"); where the window is optional as the default object is 'window'
+            console.log("Hello 1!");
+        }
+
+        let hello2 = function () {
+            window.alert("hello2!");
+            // console.log("Hello 2");
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>ViewPort is set</h1>
+    <script>
+
+        hello1();
+        hello2();
+
+        (function () { console.log("Hello 3!"); })();
+
+        (function () { let str = "Hello 3!"; console.log(str); })();
+
+        (function (str) { console.log(str); })("Hello 4!");
+
+        let name = prompt("What is your name?");
+        alert("Welcome, " + name.trim() + "!");
+
+        //DON'T use var as it suffers from a lot of problem
+        //better to just use 'let'
+
+        // let x = 3;
+        // let y = 7;
+        // y = "seven"; >>outcome would be 3seven
+        // alert("Welcome " + (x + y) + "!");
+
+        function testLetVar() {
+            {
+                //  x = 37; This is not allowed 
+                let x = 37;
+                console.log(x);
+
+                // var x = 73;
+                // console.log(x);
+
+
+            }
+            //var creates a dynamic scope;
+            // console.log(x);
+
+        }
+
+        testLetVar();
+
+        // let z = "23";
+        // let y = 23; //don't use $ or _ sign if it is not needed, as there are many thrid party JS programs tat uses these signs, which may mean other functions
+        // console.log(y);
+        // console.log(y == z);
+        // console.log(y === z); //3 equals will compare the value and type
+
+        let y = 23;
+        y += 5;
+        console.log(y);
+
+        //Single quotes or double quotes are both accepted in JS, but better to stick to one.
+
+        let str = "A quick brown fox jumps over a lazy dog";
+        console.log(typeof (str));
+        console.log(str.length);
+        console.log(str.indexOf("over"));
+        console.log(str.toUpperCase());
+
+
+        let fruits = ['apple', 'orange', 'papaya'];
+        //for-each loop
+        fruits.forEach(function (item, index, array) {
+            console.log(index, item);
+        });
+
+        console.log("Length " + fruits.length());
+
+        let names = [];
+        name["one"] = "Alex";
+        name["two"] = "Betty";
+        console.log(names["one"]);
+        console.log(name["three"]);
+        console.log("length: " + names.length()); //Will be 0 as it is a fake 'associative' array
+        //hence, it is not an array
+        names.forEach(function (item, index, array) {
+            console.log(index, item);
+        });
+
+        // let str = confirm("Do you want to quit?");
+        // console.log(str); << boolean value, T/F
+
+        let obj = new Object();
+        obj.age = 23;
+        console.log(obj["age"]); //or obj.age works too
+
+        // let names = new object;
+        // names.one = "Alex";
+        // names.two = "Betty";
+
+
+    </script>
+
+    <p>
+        First<br>
+        <script>
+            document.write("1.5<br>");
+        </script>
+        Second<br>
+
+        <script>
+            let dt = new Date(); //new is optional, best not to use it: new Date()
+            //but apparently in this case, with the 'new' it will be calling the class and not creating a new obj. God make up your mind
+            let time = dt.getHours() + ":" + dt.getMinutes();
+            document.write(time + "<br>");
+            document.write("<b>Hello, i know that you are using:" +
+                navigator.userAgent + "</b><br>");
+        </script>
+    </p>
+</body>
+
+</html>

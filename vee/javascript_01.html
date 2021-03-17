@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 01</title>
+    <script>
+        "use strict";
+
+        function hello1() {
+            // window.alert("Hello 1!");
+            // alert("Hello 1!");   // Default object is 'window'
+            console.log("Hello 1!");
+        }
+
+        let hello2 = function () {
+            // window.alert("Hello 2!");
+            // alert("Hello 2!");
+            console.log("Hello 2!")
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Viewport is set</h1>
+    <script>
+        "use strict";
+        hello1();
+        hello2();
+
+        (function () { let str = "Hello 3!"; console.log(str); })();
+
+        (function (str) { console.log(str); })("Hello 4!");
+
+        // let name = prompt("What is your name?");
+        // alert("Weolcome, [" + name.trim() + "]!");
+        // let str = confirm("Do you want to quit?");
+        // console.log(str);
+
+        // let str = "A quick brown fox jumps over the lazy dog";
+        // console.log(str.length);
+        // console.log(str.indexOf("cover"));
+
+        let fruits = ['apple', 'orange', 'papaya'];
+        // for-each loop
+        fruits.forEach(function (item, index, array) {
+            console.log(index, item);
+        });
+        console.log("Length: " + fruits.length);
+
+        // Fake "associative" array!
+        let names = [];
+        names["one"] = "Alex";      // 'names' becomes object and set the property 'one': names.one = "Alex";
+        names["two"] = "Betty";     // Similary: names.two = "Betty";
+        console.log(names["one"]);
+        console.log(names["three"]);
+        console.log("Length: " + names.length);  // Not an array!
+        names.forEach(function (item, index, array) {  // Not an array!
+            console.log(index, item);
+        });
+    </script>
+
+    <p>
+        <script>
+            let dt = new Date();
+            let time = dt.getHours() + ":" + dt.getMinutes();
+            document.write(time + "<br>");
+            document.write("Hello, I know that you are using: <b>"
+                + navigator.userAgent + "</b><br>");
+        </script>
+    </p>
+</body>
+
+</html>

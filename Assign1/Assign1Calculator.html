@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="witdth=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        .input-invalid {
+            border: 1px solid red;
+        }
+        
+        .calculator {
+            background-color: #1C1C1C;
+        }
+        
+        input[type=number],
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        #output-display {
+            background-color: #ccc;
+            color: #1C1C1C;
+        }
+        
+        .button-result {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .operator {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            justify-content: space-between;
+        }
+        
+        .button-op {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            background-color: #FF9500;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h1>Task 3: Calculator</h1>
+    </header>
+    <div class="calculator">
+        <form id="calculator-Form" method="post">
+            <div class="input-section">
+
+                <!--FIRST INPUT-->
+                <label class="number-labels" for="first-input">First Input: </label>
+                <input class="number-inputs" id="first-input" type="number" />
+
+                <!--SECOND INPUT-->
+                <label class="number-labels" for="second-input">Second Input: </label>
+                <input class="number-inputs" id="second-input" type="number" />
+
+            </div>
+
+            <!--OPERATORS-->
+            <div class="operator">
+                <input class="button-op" id="button-sum" type=button value="ADD" onclick="sumOp()" />
+                <input class="button-op" id="button-sub" type=button value="MINUS" onclick="subOp()" />
+                <input class="button-op" id="button-mul" type=button value="MULTIPLY" onclick="mulOp()" />
+                <input class="button-op" id="button-div" type=button value="DIVIDE" onclick="divOp()" />
+            </div>
+
+
+            <div class="my-output">
+                <!--OUTPUT-->
+                <label class="output-labels" for="output-display">Output: </label>
+                <input class="output" id="output-display" type="text" disabled />
+                <!--Disallow user to edit this text-->
+            </div>
+            <input id="button-reset" class="button-result" type=button value="RESET" onclick="clearForm()" />
+
+        </form>
+    </div>
+
+
+    <script>
+        "use strict";
+
+        function calculateSubmit() {
+            //TODO: CALCULATE
+            let out = "";
+            let num1 = document.getElementById("first-input").value;
+            let num2 = document.getElementById("second-input").value;
+            let opFunction = document.getElementsByClassName("button-op");
+
+            if ((num1 == "") || (num2 == "")) {
+                alert("Please enter the necessary inputs.");
+            }
+
+            switch (opFunction) {
+                case 0:
+                    sumOp();
+                    break;
+                case '-':
+                    subOp();
+                    break;
+                case '*':
+                    mulOp();
+                    break;
+                case '/':
+                    divOp();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+        function sumOp() {
+            let x = document.getElementById("first-input").value;
+            let y = document.getElementById("second-input").value;
+            let z = 0;
+
+            z = +x + +y;
+            document.getElementById("second-input").style.borderColor = "#ccc";
+            document.getElementById("output-display").value = z;
+
+        }
+
+        function subOp() {
+            let x = document.getElementById("first-input").value;
+            let y = document.getElementById("second-input").value;
+            let z = 0;
+
+            z = x - y;
+            document.getElementById("second-input").style.borderColor = "#ccc";
+            document.getElementById("output-display").value = z;
+
+        }
+
+        function mulOp() {
+            let x = document.getElementById("first-input").value;
+            let y = document.getElementById("second-input").value;
+            let z = 0;
+
+            z = x * y;
+            document.getElementById("second-input").style.borderColor = "#ccc";
+            document.getElementById("output-display").value = z;
+
+        }
+
+        function divOp() {
+            let x = document.getElementById("first-input").value;
+            let y = document.getElementById("second-input").value;
+            let z = 0;
+
+            if (y == 0) {
+                alert("Error, numbers cannot be divided by 0. Please try again.");
+                error1();
+            } else {
+                z = x / y;
+                document.getElementById("second-input").style.borderColor = "#ccc";
+                document.getElementById("output-display").value = z;
+            }
+        }
+
+        function error1() {
+            document.getElementById("second-input").style.borderColor = "red";
+        }
+
+        function clearForm() {
+            document.getElementById("first-input").value = "";
+            document.getElementById("second-input").value = "";
+            document.getElementById("output-display").value = "";
+        }
+    </script>
+</body>
+
+</html>

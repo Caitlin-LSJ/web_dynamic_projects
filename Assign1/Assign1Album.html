@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <title>Task 5: Album</title>
+
+    <style>
+        html,
+        body {
+            text-align: center;
+            justify-content: space-between;
+            background-color: #161925;
+        }
+        
+        p {
+            font-size: 14px;
+            background-color: gray;
+        }
+        
+        h5 {
+            background-color: gray;
+        }
+        
+        .navbar {
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            justify-content: space-between;
+            display: flex;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .nav>a {
+            color: whitesmoke;
+        }
+        
+        .modal-title {
+            background-color: transparent;
+        }
+        
+        .header {
+            background-color: #23395B;
+            height: 10%;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        
+        .header-title {
+            width: 100%;
+            padding-top: .5rem;
+            padding-bottom: .25rem;
+            padding-left: .5rem;
+            padding-right: .5rem;
+            color: whitesmoke;
+            font-weight: 900;
+            font-size: 24px;
+        }
+        
+        .carousel {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            margin-left: 1.75rem;
+            margin-right: 1.75rem;
+            /*TB-LR*/
+            border-radius: 10px;
+        }
+        
+        .carousel-part {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 1rem 1rem;
+        }
+        
+        .carousel-item {
+            height: 32rem;
+        }
+        
+        .carousel-item>img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            height: 32rem;
+        }
+        
+        .modal-body {
+            width: 100%;
+            height: auto;
+        }
+        
+        .col-sm {
+            background-color: #8EA8C3;
+            margin: .25rem 1rem;
+            padding: .25rem .5rem;
+            border-color: #ccc;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, .1);
+        }
+        
+        .modal-cap {
+            color: whitesmoke;
+            font-size: 16px;
+            padding: .5rem .5rem;
+            margin: 0 .15rem;
+        }
+        
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 10px;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: whitesmoke;
+        }
+        
+        @media (max-width:376px) {
+            .carousel-part {
+                padding-top: 8rem;
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .carousel {
+                margin: 0 0;
+                padding: 0 .25rem;
+            }
+            .carousel-indicators {
+                margin-bottom: 5rem;
+            }
+        }
+        
+        @media (max-width:800px) {
+            .carousel-part {
+                padding-top: 18rem;
+            }
+        }
+        
+        @media (max-width:360px) {
+            .carousel-part {
+                padding-top: 10rem;
+            }
+            .carousel {
+                margin: 0 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                float: left;
+                padding: 0 0;
+                margin: 0 0;
+            }
+            .nav {
+                float: left;
+                padding: 0 0;
+                margin: 0 0;
+            }
+            .carousel-part {
+                padding-top: 18rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="navbar py-1 mb-2">
+            <nav class="nav">
+                <a class="p-2" href="#">Home</a>
+                <a class="p-2" href="#">Photos</a>
+                <a class="p-2" href="#">Album</a>
+            </nav>
+            <div>
+                <h2 class="header-title">The Album.</h2>
+            </div>
+        </div>
+    </header>
+    <div class="carousel">
+        <div class="carousel-part">
+            <div id="carouselCaptions" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselCaptions" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselCaptions" data-slide-to="1"></li>
+                    <li data-target="#carouselCaptions" data-slide-to="2"></li>
+                    <li data-target="#carouselCaptions" data-slide-to="3"></li>
+                    <li data-target="#carouselCaptions" data-slide-to="4"></li>
+                    <li data-target="#carouselCaptions" data-slide-to="5"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a class="modal-img" data-toggle="modal" data-target="#myModal1">
+                            <img src="images/lady_coffee_small.jpg" class="d-block w-100" alt="Lady holding coffee.">
+                        </a>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Happiness</h5>
+                            <p>A cup of coffee and a warm scraf brings a small bout of happiness.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <a class="modal-img" data-toggle="modal" data-target="#myModal2">
+                            <img src="images/man_smoke_small.jpg" class="carousel-img d-block w-100" alt="Black and white photo of a man.">
+                        </a>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Mysterious</h5>
+                            <p>Eyes hiding behind big dark glasses and his lips twitched into a smirk.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <a class="modal-img" data-toggle="modal" data-target="#myModal3">
+                            <img src="images/lady_blonde_small.jpg" class="d-block w-100" alt="Blonde lady looking at camera.">
+                        </a>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Secrets</h5>
+                            <p>Smoky eyes seems to hold a secret that only she knows.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <a class="modal-img" data-toggle="modal" data-target="#myModal4">
+                            <img src="images/lady_leaf_small.jpg" class="d-block w-100" alt="Lady holding a leaf.">
+                        </a>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Silence</h5>
+                            <p>Her eyes says much more than her voice.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <a class="modal-img" data-toggle="modal" data-target="#myModal5">
+                            <img src="images/lady_yellow_small.jpg" class="d-block w-100" alt="Lady in yellow background.">
+                        </a>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Chic</h5>
+                            <p>The right attitude is what makes the outfit work.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <a class="modal-img" data-toggle="modal" data-target="#myModal6">
+                            <img src="images/lady_glasses_small.jpg" class="d-block w-100" alt="Lady with glasses.">
+                        </a>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Beauty</h5>
+                            <p>Beauty is the eye of the beholder.</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselCaptions" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselCaptions" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal1" role="dialog">
+            <div class="modal-lg modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Happiness</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    </div>
+                    <div class="modal-body">
+                        <img class="img-fluid" src="images/lady_coffee.jpg" alt="Lady With Coffee.">
+                        <p class="modal-cap">
+                            A cup of coffee and a warm scraf brings a small bout of happiness.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Mysterious</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <img class="img-fluid" src="images/man_smoke.jpg" alt="Man Smoking.">
+                        <p class="modal-cap">
+                            Eyes hiding behind big dark glasses and his lips twitched into a smirk.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal3" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Secrets</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <img class="img-fluid" src="images/lady_blonde.jpg" alt="Lady with Blonde Hair.">
+                        <p class="modal-cap">
+                            Smoky eyes seems to hold a secret that only she knows.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal4" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Silence</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <img class="img-fluid" src="images/lady_leaf.jpg" alt="Lady Holding a Leaf.">
+                        <p class="modal-cap">
+                            Her eyes says much more than her voice.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal5" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Chic</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <img class="img-fluid" src="images/lady_yellow.jpg" alt="Lady with a Rose Sweater.">
+                        <p class="modal-cap">
+                            The right attitude is what makes the outfit work.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal6" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Beauty</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <img class="img-fluid" src="images/lady_glasses.jpg" alt="Lady with Glasses.">
+                        <p class="modal-cap">
+                            Beauty is the eye of the beholder.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END MODALS-->
+
+    <footer class="footer">&#169; 2020. B04180020, Caitlin Lee Shiao Juen. BUW3213 Task 5: The Album. Images from Pexels, 2014.</footer>
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+
+</html>

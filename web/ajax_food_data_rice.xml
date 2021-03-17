@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+  <food>
+    <name>Nasi Kerabu</name>
+    <description>From Kelantan, Nasi Kerabu gets its eye-grabbing blue colour from telang flowers, which are crushed and mixed into flour.</description>
+    <price>700</price>
+  </food>
+  <food>
+    <name>Nasi Lemak</name>
+    <description>Some call it Malaysia's unofficial national dish. Everyone else calls it delicious.</description>
+    <price>120</price>
+  </food>
+</menu>

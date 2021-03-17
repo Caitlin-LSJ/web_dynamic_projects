@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Task 4: Dynamic List</title>
+    <style>
+        .image {
+            float: left;
+            width: 450px;
+        }
+        
+        .active {
+            color: blue;
+            font-weight: 700;
+        }
+    </style>
+    <script>
+        "use strict";
+
+        let peopleNames = [
+            'Woman Raising Her Hands',
+            'Woman With Blonde Hair',
+            'Woman With Coffee',
+            'Lady With Flowers',
+            'Woman With Spectacles',
+            'Lady Looking Up',
+            'Lady With Rose Sweater',
+            'Man With Camera',
+            'Man With Hat and Glasses',
+            'Man With Plant',
+            'Man Smoking'
+        ];
+
+        function addOne() {
+            let ol_list = document.getElementById("ordered_list");
+            let ol_li = document.createElement("li");
+
+
+            if (peopleNames.length == 0) {
+                alert('All the names have been added!');
+            } else if (peopleNames.length == 11) {
+                peopleNames.splice(0, 1);
+                let i = Math.floor(Math.random() * peopleNames.length);
+                let output_string = peopleNames[i];
+                ol_li.appendChild(document.createTextNode(peopleNames[i]));
+                ol_list.appendChild(ol_li);
+                peopleNames.splice(i, 1);
+                ol_li.addEventListener("click", itemClick());
+
+            } else {
+                let i = Math.floor(Math.random() * peopleNames.length);
+                let output_string = peopleNames[i];
+                ol_li.appendChild(document.createTextNode(peopleNames[i]));
+                ol_list.appendChild(ol_li);
+                peopleNames.splice(i, 1);
+                ol_li.addEventListener("click", itemClick());
+            }
+        }
+
+
+
+        function addAll() {
+            if (peopleNames.length == 0) {
+                alert('All the names have been added!')
+            } else {
+                let i = peopleNames.length;
+                while (i--) {
+                    let ol_list = document.getElementById("ordered_list");
+                    let ol_li = document.createElement("li");
+                    let randomName = Math.floor(Math.random() * peopleNames.length);
+                    ol_li.appendChild(document.createTextNode(peopleNames[randomName]));
+                    ol_list.appendChild(ol_li);
+                    peopleNames.splice(randomName, 1);
+
+                    ol_li.addEventListener("click", itemClick());
+                }
+
+            }
+
+        }
+
+
+        function resetList() {
+            let order = document.getElementById("ordered_list");
+            order.innerHTML = "";
+
+
+            peopleNames = [
+                'Woman Raising Her Hands',
+                'Woman With Blonde Hair',
+                'Woman With Coffee',
+                'Lady With Flowers',
+                'Woman With Spectacles',
+                'Lady Looking Up',
+                'Lady With Rose Sweater',
+                'Man With Camera',
+                'Man With Hat and Glasses',
+                'Man With Plant',
+                'Man Smoking'
+            ];
+
+            let node = document.createElement("li");
+            let random = Math.floor(Math.random() * peopleNames.length);
+            let output = peopleNames[random];
+            let textNode = document.createTextNode(output);
+            node.appendChild(textNode);
+            document.getElementById("ordered_list").appendChild(node);
+            peopleNames.splice(random, 1);
+
+            node.addEventListener("click", itemClick());
+        }
+
+        function itemClick() {
+            let currentImg = document.getElementsByTagName("img");
+            let div_list = document.getElementById("people");
+            let items = div_list.getElementsByTagName("li");
+            for (let x = 0; x < items.length; x++) {
+                items[x].addEventListener("click", function() {
+                    let current = document.getElementsByClassName("active");
+                    if (current.length > 0) {
+                        current[0].className = current[0].className.replace(" active", "");
+                    }
+                    this.className += " active";
+                    let output_clicked = items[x].innerHTML;
+                    switchImage(output_clicked);
+
+                });
+
+            }
+
+        }
+
+        function switchImage(input) {
+            let newImg = document.getElementById("image_show");
+            switch (input) {
+                case 'Woman Raising Her Hands':
+                    newImg.src = "images/lady_hands.jpg";
+                    break;
+                case 'Woman With Blonde Hair':
+                    newImg.src = "images/lady_blonde.jpg";
+                    break;
+                case 'Woman With Coffee':
+                    newImg.src = "images/lady_coffee.jpg";
+                    break;
+                case 'Lady With Flowers':
+                    newImg.src = "images/lady_flowers.jpg";
+                    break;
+                case 'Woman With Spectacles':
+                    newImg.src = "images/lady_glasses.jpg";
+                    break;
+                case 'Lady Looking Up':
+                    newImg.src = "images/lady_sky.jpg";
+                    break;
+                case 'Lady With Rose Sweater':
+                    newImg.src = "images/lady_yellow.jpg";
+                    break;
+                case 'Man With Camera':
+                    newImg.src = "images/man_camera.jpg";
+                    break;
+                case 'Man With Hat and Glasses':
+                    newImg.src = "images/man_hat.jpg";
+                    break;
+                case 'Man With Plant':
+                    newImg.src = "images/man_plant.jpg";
+                    break;
+                case 'Man Smoking':
+                    newImg.src = "images/man_smoke.jpg";
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Task 4: Dynamic List</h1>
+        <h2 id="header">Welcome!</h2>
+        <script>
+            "use strict";
+            let name = prompt("What is your name?");
+            let h = document.getElementById("header");
+            h.innerHTML = "Welcome, " + name.trim() + "!";
+        </script>
+    </header>
+    <div>
+        <div class="image">
+            <img id="image_show" width="400" src="images/lady_hands.jpg" alt="Woman Raising Her Hands" />
+        </div>
+        <div id="people">
+            <ol id="ordered_list">
+                <li class="item_list" id="person1" onclick="javascript:itemClick()">Woman Raising Her Hands</li>
+            </ol>
+        </div>
+        <input type="button" value="Add Person" onclick="addOne()">
+        <input type="button" value="Add All!" onclick="addAll()">
+        <input type="button" value="Reset" onclick="resetList()">
+    </div>
+</body>
+
+</html>

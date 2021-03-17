@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+  <food>
+    <name>Mee Goreng Mamak</name>
+    <description>Perfect package with yellow noodles, beef or chicken, shrimp, soy sauce, veggies and eggs.</description>
+    <price>750</price>
+  </food>
+  <food>
+    <name>Apam Balik</name>
+    <description>Pancake-style snack wedded with the compact package of an omelet.</description>
+    <price>150</price>
+  </food>
+  <food>
+    <name>Roti John</name>
+    <description>Sandwich made with grilled minced meat and egg in the middle of slim bread, and drowned in a confection of condiments.</description>
+    <price>350</price>
+  </food>
+</menu>

@@ -1,0 +1,42 @@
+{% extends "bmi_base.html" %} {% block title %}BMI: Input{% endblock %} {% block content %}
+
+<style>
+    div {
+        text-align: center;
+    }
+    
+    form {
+        display: inline-block;
+        border: 1px solid black;
+    }
+    
+    .my-label {
+        float: left;
+        text-align: right;
+        width: 100px;
+        margin: 5px;
+    }
+    
+    .my-input {
+        text-align: left;
+        width: 90px;
+        background-color: snow;
+        margin: 3px;
+    }
+    
+    #btn {
+        float: right;
+        text-align: center;
+        padding: 3px;
+    }
+</style>
+<div>
+    <form method="post" action="{{ url_for('bmi_summary_view') }}">
+        <label class="my-label" for="height">Height (cm):</label>
+        <input class="my-input" id="height" name="height" type="number" min="120" max="200" size="5"><br>
+        <label class="my-label" for="mass">Mass (kg): </label>
+        <input class="my-input" id="mass" name="mass" type="number" min="40" max="160" size="5"><br>
+        <input id="btn" type="submit" value="Calculate BMI">
+    </form>
+</div>
+{% endblock %}

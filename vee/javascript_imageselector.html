@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Test Question 2</title>
+    <style>
+        #candidates {
+            border: 2px solid orange;
+            margin-right: 25em;
+            padding: 1em;
+        }
+
+        #favourites {
+            border: 2px solid green;
+            margin-right: 25em;
+            padding: 1em;
+        }
+
+        #actions {
+            width: 20em;
+            float: right;
+            border: 1px solid blue;
+            padding: 1em
+        }
+
+        img.thumbnail {
+            width: 128px;
+        }
+
+        img:not(.thumbnail) {
+            width: 256px;
+        }
+    </style>
+    <script>
+        "use strict";   // Make sure you use strict-mode, as required.
+
+        // We should analyze the given HTML and CSS before rushing to write any code
+        // - CSS rule img.thumbnail has been conveniently defined for managing the width
+        //   of the image easily. We should use this.
+
+        // Use window.onload for putting initialization code
+        // - There are other ways, but window.onload seems to be most widely supported.
+        // - It is fired when the entire page loads, including its content (images, scripts, etc.)
+        window.onload = function () {
+
+            // Assign the click event handler for the [Reset] button.
+            document.getElementById("reset").onclick = imageReset;
+
+            // Assign the click event handler for every image
+            let imgs = document.getElementsByClassName("image");
+            for (let i = 0; i < imgs.length; i++) {
+                imgs[i].onclick = imageClick;
+            }
+        };
+
+        function imageReset() {
+            // Move all images back to the candidates
+            let images = document.getElementsByClassName("image");
+            for (let i = 0; i < images.length; i++) {
+                let image = images[i];
+                let parentNode = image.parentNode;
+                if (parentNode.id == "favourites") {
+                    image.remove();
+                    image.classList.add("thumbnail");
+                    document.getElementById("candidates").appendChild(image);
+                }
+            }
+
+            // Clear the action list
+            let actions_list = document.getElementById("actions_list");
+            while (actions_list.firstChild) {
+                document.getElementById("actions_list").removeChild(actions_list.firstChild);
+            }
+        }
+
+        function imageClick() {
+            let parentNode = this.parentNode;
+            let actionText;
+
+            if (parentNode.id == "candidates") {
+                // The image is still a candidate: Move to favourite area
+                this.parentNode.removeChild(this);
+                this.classList.remove("thumbnail");  // Don't show it as a thumbnail anymore
+                document.getElementById("favourites").appendChild(this);
+                actionText = "Candidate: " + this.alt;
+            }
+            else {
+                // The image is in favourite list: Move it to candidate area
+                this.parentNode.removeChild(this);
+                this.classList.add("thumbnail");  // Show it as a thumbnail
+                document.getElementById("candidates").appendChild(this);
+                actionText = "Favourite: " + this.alt;
+            }
+
+            // Log this in the Actions area
+            let li = document.createElement("li");
+            li.innerText = actionText;
+            document.getElementById("actions_list").appendChild(li);
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Image Selector</h1>
+
+    <ul>
+        <li>Click a photo to move it between Candidates and Favourites.</li>
+        <li>Click "Reset List!" to move all photos back to the Candidates and clear the Actions.</li>
+    </ul>
+
+    <div id="actions">
+        <h2>Actions:</h2>
+        <ol id="actions_list">
+        </ol>
+    </div>
+
+    <div>
+        <div>
+            <button id="reset">Reset List!</button>
+        </div>
+
+        <h2>Candidates:</h2>
+        <!-- Purposely remove the whitespaces between the HTML tags below
+             to remove the whitespaces (gap) between the images -->
+        <div id="candidates"><img class="image thumbnail" src="images/image_1.jpg" alt="Image 1"><img
+                class="image thumbnail" src="images/image_2.jpg" alt="Image 2"><img class="image thumbnail"
+                src="images/image_3.jpg" alt="Image 3"><img class="image thumbnail" src="images/image_4.jpg"
+                alt="Image 4"><img class="image thumbnail" src="images/image_5.jpg" alt="Image 5"><img
+                class="image thumbnail" src="images/image_6.jpg" alt="Image 6"></div>
+
+        <h2>Favourites:</h2>
+        <div id="favourites">
+        </div>
+    </div>
+
+</body>
+
+</html>

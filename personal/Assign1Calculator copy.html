@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="witdth=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body.div {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .myCalc {
+            width: 300px;
+            padding-bottom: 10px;
+            border: 3px solid #0D1B1E;
+            border-radius: 8px;
+            background-color: #7798AB;
+            box-shadow: 5px 8px 8px -2px rgba(0, 0, 0, 0.61);
+        }
+
+        .output {
+            width: 275px;
+            height: 50px;
+            border: 3px solid #0D1B1E;
+            border-radius: 10px;
+            box-sizing: border-box;
+            margin-left: 10px;
+            margin-top: 5px;
+            margin-right: 10px;
+            margin-bottom: 5px;
+            font-size: 3em;
+            background-color: #E8DCB9;
+            text-align: right;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            width: 75px;
+            height: 30px;
+            border-radius: 25%;
+            border: 3px solid #0D1B1E;
+            background-color: #C3DBC5;
+            margin: 10px;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
+
+        .operator {
+            background-color: #FC6471;
+            color: #ffffff;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h1>Task 3: Calculator</h1>
+    </header>
+    <div class="myCalc">
+        <input type="text" class="output" disabled>
+        <div class="inputKeys">
+            <div class="row">
+                <button value="7">7</button>
+                <button value="8">8</button>
+                <button value="9">9</button>
+                <button value="+" class="operator">+</button>
+            </div>
+            <div class="row">
+                <button value="4">4</button>
+                <button value="5">5</button>
+                <button value="6">6</button>
+                <button value="-" class="operator">-</button>
+            </div>
+            <div class="row">
+                <button value="1">1</button>
+                <button value="2">2</button>
+                <button value="3">3</button>
+                <button value="*" class="operator">*</button>
+            </div>
+            <div class="row">
+                <button value="C" class="operator">CLEAR</button>
+                <button value="0">0</button>
+                <button value="/" class=opreator>/</button>
+                <button value="=" class="operator">=</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    "use strict";
+    const button = document.querySelectorAll("button");
+    const output = document.querySelector(".output");
+
+    button.forEach(function (button) {
+        button.addEventListener('click', count);
+    });
+
+    function count(event) {
+        const buttonValue = event.target.value;
+        if (buttonValue == '='){
+            if (output.value != '') {
+                    output.value = eval(output.value);
+                }
+        }else if (buttonValue == 'C'){
+                output.value = '';
+        }else{
+            output.value += buttonValue;
+        }
+    }
+</script>
+
+</html>

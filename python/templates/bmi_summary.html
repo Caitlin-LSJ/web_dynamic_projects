@@ -1,0 +1,12 @@
+{% extends "bmi_base.html" %}
+{% block title %}BMI: Summary{% endblock %}
+{% block content %}
+<ul>
+    <li>Height: {{ height_cm }} cm</li>
+    <li>Mass: {{ mass_kg }} kg</li>
+    <li>BMI: {{ bmi_str }}</li>
+    <li>Interpretation: {{ interpretation }}</li>
+    <li>Healthy Mass Range: {{ mass_healthy_lower_kg_str }} kg - {{ mass_healthy_upper_kg_str }} kg</li>
+</ul>
+<a href="{{ url_for('bmi_input_view') }}">Back to BMI Input Form</a>
+{% endblock %}

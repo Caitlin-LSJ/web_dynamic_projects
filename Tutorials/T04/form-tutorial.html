@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width = device-width, initial-scale=1.0">
+    <title>T04: Forms</title>
+    <style>
+        input:invalid {
+            border: 1px solid red;
+        }
+        
+        .my-label {
+            float: left;
+            text-align: right;
+            width: 300px;
+            margin: 5px;
+        }
+        
+        .my-input {
+            text-align: left;
+            width: 200px;
+            background-color: snow;
+            margin: 3px;
+        }
+        
+        .submit-Btn {
+            float: right;
+            text-align: center;
+            padding: 3px;
+        }
+        
+        .new-label {
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="ProcessForm.php" method="post">
+        <div class="personal-info">
+            <fieldset>
+                <legend>Personal Information</legend>
+                <table>
+                    <tr>
+                        <td><label class="my-label" for="fullname">Your Name </label> </td>
+                        <td><input name="fullname" id="fullname" class="my-input" type="text" spellcheck="false" required></td>
+                    </tr>
+                    <tr>
+                        <td> <label class="my-label" for="dob">Date of Birth </label> </td>
+                        <td><input name="dob" id="dob" class="my-input" type="date" required></td>
+                    </tr>
+                    <tr>
+                        <td><label class="my-label" for="nric">NRIC No.</label> </td>
+                        <td><input name="nric" id="nric" class="my-input" type="text" pattern="[0-9]{6}-[0-9]{2}-[0-9]{4}"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="my-label" class="my-label" for="gender">Gender</label> </td>
+                        <td><select name="gender" id="gender" class="my-input">
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                            <option value="other">Other</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><label class="my-label" for="height">Height (cm) </label> </td>
+                        <td><input name="height" id="height" class="my-input" type="number" min="140" max="220"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="my-label" for="weight">Weight (kg) </label> </td>
+                        <td><input name="weight" id="weight" class="my-input" type="number" min="39" max="200"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="my-label" for="fav-colour">Favourite Colour</label> </td>
+                        <td><input name="fav-colour" id="fav-colour" class="my-input" type="color"></td>
+                    </tr>
+
+                </table>
+            </fieldset>
+        </div>
+
+        <div class="contact-info">
+            <fieldset>
+                <legend>Contact Information</legend>
+                <table>
+                    <tr>
+                        <td><label class="my-label" for="email">Email</label> </td>
+                        <td><input name="email" id="email" class="my-input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="my-label" for="password">Preferred Password</label> </td>
+                        <td><input name="password" id="password" class="my-input" type="password" required></td>
+                    </tr>
+                    <tr>
+                        <td><label class="my-label" for="mobile">Mobile Number</label> </td>
+                        <td><input name="mobile" id="mobile" class="my-input" type="text" pattern="[0-9]{10}" required></td>
+                    </tr>
+                    <tr>
+                        <td><label class="my-label" for="status">Marital Status</label> </td>
+                        <td><select name="status" id="status" class="my-input">
+                            <option value="single">Single</option>
+                            <option value="married">Married</option>
+                            <option value="divorced">Divorced</option>
+                            <option value="widowed">Widowed</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><label class="my-label" for="yn">Currently working in any Malaysian Government Agency?</label> </td>
+                        <td><select name="yn" id="yn" class="my-input">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><label class="my-label" for="socmedia">Do you have the following social media accounts?</label></td>
+                        <td><select id="socmedia" name="socmedia[]" multiple="multiple" size="5">
+                            <option value="facebook">Facebook</option>
+                            <option value="whatsapp">WhastApp</option>
+                            <option value="twitter">Twitter</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="telegram">Telegram</option>
+                            <option value="other">Other</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><label class="my-label" for="describe">Use no more than 300 words to desrcibe yourself.</label> </td>
+                        <td><textarea id="describe" name="describe" autofocus="autofocus" cols="30" rows="8" placeholder="Tell us something!" maxlength="300"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label class="my-label" for="resume">PDF file for resume</label> </td>
+                        <td><input id="resume" name="resume" type="file"></td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+
+        <div class="bank-info">
+            <fieldset>
+                <legend>Payment Information</legend>
+                <table>
+                    <tr>
+                        <td><label class="my-label" for="bank">Bank </label></td>
+                        <td><input name="bank" id="bank" class="my-input" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="my-label" for="acc">Account </label></td>
+                        <td><input name="acc" id="acc" class="my-input" type="text" placeholder="XXXX-XXXXXXXX" pattern="[0-9]{4}-[0-9]{8}"></td>
+                    </tr>
+
+                </table>
+            </fieldset>
+        </div>
+        <input class="submit-Btn" type="submit" value="Create">
+    </form>
+</body>
+
+</html>

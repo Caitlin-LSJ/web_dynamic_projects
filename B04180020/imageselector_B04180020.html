@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Test Question 2</title>
+    <style>
+        #candidates {
+            border: 2px solid orange;
+            margin-right: 25em;
+            padding: 1em;
+        }
+        
+        #favourites {
+            border: 2px solid green;
+            margin-right: 25em;
+            padding: 1em;
+        }
+        
+        #actions {
+            width: 20em;
+            float: right;
+            border: 1px solid blue;
+            padding: 1em
+        }
+        
+        img.thumbnail {
+            width: 128px;
+        }
+        
+        img:not(.thumbnail) {
+            width: 256px;
+        }
+    </style>
+    <script type="text/javascript" src="imageselector_B04180020.js"></script>
+</head>
+
+<body>
+    <h1>Image Selector</h1>
+
+    <ul>
+        <li>Click a photo to move it between Candidates and Favourites.</li>
+        <li>Click "Reset List!" to move all photos back to the Candidates and clear the Actions.</li>
+    </ul>
+
+    <div id="actions">
+        <h2>Actions:</h2>
+        <ol id="actions_list">
+        </ol>
+    </div>
+
+    <div>
+        <div>
+            <button id="reset">Reset List!</button>
+        </div>
+
+        <h2>Candidates:</h2>
+        <!-- Purposely remove the whitespaces between the HTML tags below
+             to remove the whitespaces (gap) between the images -->
+        <div id="candidates"><img class="image thumbnail" src="images/image_1.jpg" alt="Image 1"><img class="image thumbnail" src="images/image_2.jpg" alt="Image 2"><img class="image thumbnail" src="images/image_3.jpg" alt="Image 3"><img class="image thumbnail" src="images/image_4.jpg"
+                alt="Image 4"><img class="image thumbnail" src="images/image_5.jpg" alt="Image 5"><img class="image thumbnail" src="images/image_6.jpg" alt="Image 6"></div>
+
+        <h2>Favourites:</h2>
+        <div id="favourites">
+        </div>
+    </div>
+
+</body>
+
+</html>

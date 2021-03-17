@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 04: Form Handling</title>
+    <script>
+        "use strict";
+
+        /* Principles:
+         * - Specify action = URL properly
+         * - <input type="submit" ...> == form.submit()
+         * - Don't submit & submit again. (Prevent double submission?)
+         *
+         * Form Validation on Client-Side:
+         * - Correct format? Numbers within range?
+         * - Hard to be perfect!
+         * - E.g., Validate NRIC: Ensure correct format, but IMPOSSIBLE to check
+         *   if there's really a person with the NRIC!
+         * - Perfect validation: Only possible if do it in server-side.
+         *   - Can check from database if a person with NRIC is registered.
+         * - Question: Why not just do validation on server-side?
+         *   - We don't want to make the server too busy if possible.
+         *   - Client-side: Involve user's web browser
+         *   - For development:
+         *     (1) Implement validation in server side (Essential & Important!)
+         *     (2) Implement validation in client side
+         */
+
+        function submitOne() {
+            let element_value1 = document.getElementById("value1");
+            let value1 = element_value1.value;
+            if (value1.length > 15) {
+                alert("Too long!");
+                return false;
+            }
+            return true;
+        }
+
+        function submitTwo() {
+            let element_value2 = document.getElementById("value2");
+            let value2 = element_value2.value;
+            if (value2.length > 15) {
+                alert("Too long!");
+                return;
+            }
+
+            let formTwo = document.getElementById("formTwo");
+
+            if (value2 == "phpinfo") {
+                formTwo.action = "phpinfo.php";
+            }
+            else {
+                formTwo.action = "showpost.php";
+            }
+
+            formTwo.submit();
+
+            // Prevent resubmission!
+            // - Modify form.action: To empty, or to an alert("Wait!")
+            formTwo.action = "";
+            // - Modify the button's onclick event listener: alert("Wait!")
+        }
+
+        /* Client-Side Processing */
+        function submitThree() {
+            let element_value3 = document.getElementById("value3");
+            let value3 = element_value3.value;
+            alert(value3);
+        }
+
+        /* Client-Side Processing */
+        function clickFour() {
+            let element_value4 = document.getElementById("value4");
+            let value4 = element_value4.value;
+            /* Can validate with regex, can do it with input's pattern too */
+            // if (value4.match(/^[0-9]{6}-[0-9]{2}-[0-9]{4}$/) == null) {
+            //     alert("Invalid!");
+            // }
+            // else {
+            //     alert("Valid!")
+            // }
+            let str = value4.replace(/-/g, "");
+            alert('After replacement: ' + str);
+        }
+
+        function submitFive() {
+            console.log("Five");
+            // Do validation....
+            // Forgot to specify the .action ??? Will cause infinite loop
+            document.getElementById("formFive").submit();
+        }
+    </script>
+</head>
+
+<body>
+    <h1 id="header">JavaScript Form</h1>
+
+    <h3>Form Submission: Server</h3>
+    <form method="post" action="showpost.php">
+        <input type="text" name="value1" value="Value One."><br>
+        <input type="submit">
+    </form>
+
+    <h3>Form Submission: Server (Common)</h3>
+    <form method="post" onsubmit="return submitOne()" action="showpost.php">
+        <input id="value1" type="text" name="value1" value="Value One."><br>
+        <input type="submit">
+    </form>
+
+    <h3>Form Submission: Server (Common &amp; Flexible)</h3>
+    <form id="formTwo" method="post">
+        <input id="value2" type="text" name="value2" value="Value Two."><br>
+        <input type="button" onclick="submitTwo()" value="Submit">
+    </form>
+
+    <h3>Form Submission: Client-Side Processing</h3>
+    <form action="javascript:submitThree()">
+        <input id="value3" type="text" name="value3" value="Value Three."><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <h3>Form Submission: Client-Side Processing</h3>
+    <input id="value4" type="text" name="value4" pattern="[0-9]{6}-[0-9]{2}-[0-9]{4}" value="Value Four."><br>
+    <input type="button" onclick="clickFour()" value="Submit">
+
+    <h3>Form Submission: WRONG</h3>
+    <form id="formFive" method="post" action="javascript:submitFive()">
+        <input id="value5" type="text" name="value5" value="Value Five."><br>
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+
+</html>

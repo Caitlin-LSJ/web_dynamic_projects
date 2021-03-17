@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>Malaysia Food</title>
+    <script>
+        "use strict";
+
+        let xhr;
+
+        window.onload = function () {
+            document.getElementById('fetch').onclick = fetchMenu;
+            // Alternative syntax:
+            // document.getElementById('fetch').onclick =
+            //     function () { fetchMenu(); }
+        }
+
+        function fetchMenu() {
+            let category = document.getElementById('category').value;
+            let format = document.getElementById('format').value;
+
+            let url = "ajax_food_provider.php?category=" + encodeURIComponent(category)
+                + "&format=" + encodeURIComponent(format);
+            xhr = new XMLHttpRequest();
+            // xhr.onreadystatechange = menuFetchedXML;
+            switch (format) {
+                case "xml":
+                    xhr.onload = menuLoadedXML;
+                    break;
+                case "json":
+                    xhr.onload = menuLoadedJSON;
+                    break;
+            }
+            // xhr.onerror = onFetchError;
+            xhr.open('GET', url);
+            xhr.send();
+        }
+
+        function menuFetchedXML() {
+            try {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    // ~= onload
+                    menuLoadedXML();
+                }
+            }
+            catch (e) {
+                alert('Caught Exception: ' + e.message);
+            }
+        }
+
+        function menuLoadedXML() {
+            if (xhr.status === 200) {
+                buildMenuXML(xhr.responseXML);
+            }
+            else {
+                alert('Error: Status Code = ' + xhr.status)
+            }
+        }
+
+        function menuLoadedJSON() {
+            if (xhr.status === 200) {
+                buildMenuJSON(JSON.parse(xhr.responseText));
+            }
+            else {
+                alert('Error: Status Code = ' + xhr.status)
+            }
+        }
+
+        function buildMenuXML(xml) {
+            let elem_main = document.getElementById('main');
+            while (elem_main.firstChild) {
+                elem_main.removeChild(elem_main.firstChild);
+            }
+
+            let food_list = xml.getElementsByTagName('food');
+            for (let i = 0; i < food_list.length; i++) {
+                let food = food_list[i];
+
+                let food_name = food.getElementsByTagName('name')[0].firstChild.nodeValue;
+                let food_description = food.getElementsByTagName('description')[0].firstChild.nodeValue;
+                let food_price = food.getElementsByTagName('price')[0].firstChild.nodeValue;
+
+                let elem_name = document.createElement('h3');
+                // elem_name.appendChild(document.createTextNode(food_name));
+                elem_name.innerText = food_name;
+                let elem_description = document.createElement('p');
+                elem_description.innerText = food_description;
+                let elem_price = document.createElement('p');
+                elem_price.innerText = 'RM ' + (food_price / 100).toFixed(2);
+
+                elem_main.appendChild(elem_name);
+                elem_main.appendChild(elem_description);
+                elem_main.appendChild(elem_price);
+            }
+        }
+
+        function buildMenuJSON(json) {
+            let elem_main = document.getElementById('main');
+            while (elem_main.firstChild) {
+                elem_main.removeChild(elem_main.firstChild);
+            }
+
+            let food_list = json;
+            for (let i = 0; i < food_list.length; i++) {
+                let food = food_list[i];
+
+                let elem_name = document.createElement('h3');
+                elem_name.innerText = food.name;
+                let elem_description = document.createElement('p');
+                elem_description.innerText = food.description;
+                let elem_price = document.createElement('p');
+                elem_price.innerText = 'RM ' + (food.price / 100).toFixed(2);
+
+                elem_main.appendChild(elem_name);
+                elem_main.appendChild(elem_description);
+                elem_main.appendChild(elem_price);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Malaysia Food</h1>
+    <div>
+        <label for="category"><b>Category</b></label>
+        <select id="category">
+            <option value="rice">Rice</option>
+            <option value="miscellaneous">Miscellaneous</option>
+        </select>
+    </div>
+    <div>
+        <label for="format"><b>Format</b></label>
+        <select id="format">
+            <option value="json">JSON</option>
+            <option value="xml">XML</option>
+        </select>
+    </div>
+    <button id="fetch">Fetch!</button>
+    <hr>
+    <div id="main"></div>
+</body>
+
+</html>

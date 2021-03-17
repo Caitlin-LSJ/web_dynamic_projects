@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2: Fun with Form</title>
+    <style>
+        .my-input-row {
+            margin-bottom: 10px;
+            text-align: right;
+
+
+        }
+
+        .noBorder {
+            /*margin-left: 35em;*/
+            margin-top: 0%;
+            margin-right: 70em;
+            /*float: right;*/
+        }
+
+        h1 {
+            margin-top: 20px;
+            margin-right: 20px;
+            margin-left: 90px;
+            /*float: right;*/
+        }
+
+        .my-input {
+            float: right;
+        }
+
+        input[type=color] {
+            width: 140px;
+            box-sizing: border-box;
+            border-radius: 2px;
+            margin-right: 20px;
+        }
+
+        input[type=submit] {
+            width: 130px;
+            box-sizing: border-box;
+            margin-right: 35px;
+
+        }
+
+        #Sum {
+            width: 50px;
+            box-sizing: border-box;
+            margin-top: 2px;
+            margin-right: 110px;
+        }
+
+        #differences {
+            width: 50px;
+            box-sizing: border-box;
+            margin-top: 2px;
+            margin-right: 110px;
+        }
+
+        .input-invalid {
+            border: 3px dotted red;
+        }
+    </style>
+    <script>
+        "use strict";
+
+        let check = false;
+        let finalminimum = 1;//assign global minimum value = 1
+        let finalmaximum = 100;//assign global maximum value = 100
+
+        function checkWithinRange(value, min, max) {
+
+            let number = value;
+            let minimum1 = min;
+            let maximum1 = max;
+
+            //check if the value within in the range
+            if ((number >= minimum1) && (number <= maximum1)) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+
+        function validateNumber(id, min, max) {
+
+            let ids = id;
+            let minimum = min;
+            let maximum = max;
+
+            let value = document.getElementById(id).value;
+
+            //let check = new boolean(false);
+            check = checkWithinRange(value, minimum, maximum);
+
+            if (check == true) {
+                //need to put coding
+                console.log("yes");
+            } else {
+                //need to put coding
+                let modify = document.getElementById(id);
+                modify.classList.add("input-invalid");
+                console.log("no");
+            }
+
+        };
+
+        function prettifyString(id) {
+            //need to put coding
+
+            let word = document.getElementById(id).value;//get the value of the string
+            console.log("there is id");
+
+            let wordsmall = word.toLowerCase();//make the all the string become lowercase
+            let joinword = wordsmall.split(" ").join("");//make the string have no spaces
+            console.log("the word is already convert");
+            console.log(joinword);
+
+            document.getElementById(id).value = joinword;//insert the final string to the string box
+        };
+
+        function onFormSubmit() {
+            //need to put coding
+
+            let bgcolor = document.getElementById("color").value;//get the value of the color
+
+            document.body.style.backgroundColor = bgcolor;//apply color at the background
+            console.log("it change the color");//check whether the process is successful or not
+
+            let input1 = document.getElementById("number-one").value;//get the value in the input box 1
+            let input2 = document.getElementById("number-two").value;//get the value in the input box 2
+
+            //check the condition whether the inputs in the range or not
+            if ((input1 >= finalminimum) && (input1 <= finalmaximum) && (input2 >= finalminimum) && (input2 <= finalmaximum)) {
+                //for the sum operation
+                let tambah = +input1 + +input2;
+                //for for the minus operation
+                let minus = input1 - input2;
+
+                document.getElementById("Sum").value = tambah;//assign the total value to the sum box
+                document.getElementById("differences").value = minus;//assign the minus value to the differences box
+            } else {
+                alert("Please fill in two valid number");
+            }
+        };//end of the onFormSubmit()
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Task 2: Fun with Form</h1>
+    </header>
+    <div class="noBorder">
+        <form method="post" action="javascript:onFormSubmit();">
+            <div class="my-input-row">
+                <label class="my-label" for="number-one">Number One (1-100):</label>
+                <input id="number-one" class="my-input" type="number" name="number-one" onchange="javascript:validateNumber('number-one', 1, 100);"
+                />
+            </div>
+            <br>
+            <div class="my-input-row">
+                <label class="my-label" for="number-two">Number Two (1-100):</label>
+                <input id="number-two" class="my-input" type="number" name="number-two" onchange="javascript:validateNumber('number-two', 1, 100);"
+                />
+            </div>
+            <br>
+            <div class="my-input-row">
+                <label class="my-label" for="string">String:</label>
+                <input id="string" class="my-input" type="text" name="string" onchange="javascript:prettifyString('string');" />
+            </div>
+            <br>
+            <div class="my-input-row">
+                <label class="my-label" for="color">Color:</label>
+                <input id="color" class="my-input" name="color" type="color" />
+            </div>
+            <br>
+            <input class="my-input" type="submit" value="Process" />
+            <br>
+            <br>
+            <div class="my-input-row">
+                <label class="my-label" for="Sum">Sum:</label>
+                <input id="Sum" class="my-input" name="Sum" type="number" />
+            </div>
+            <br>
+            <div class="my-input-row">
+                <label class="my-label" for="differences">Differences:</label>
+                <input id="differences" class="my-input" name="differences" type="number" />
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

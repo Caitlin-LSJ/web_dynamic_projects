@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Task 4: Dynamic List</title>
+    <style>
+        .image {
+            float: left;
+            width: 450px;
+        }
+    </style>
+    <script>
+        "use strict";
+
+        let building_1 = { id: "building1", image: "images/image_1.jpg", description: "Building 1" };
+        let building_2 = { id: "building2", image: "images/image_2.jpg", description: "Building 2" };
+        let building_3 = { id: "building3", image: "images/image_3.jpg", description: "Building 3" };
+        let building_4 = { id: "building4", image: "images/image_4.jpg", description: "Building 4" };
+        let building_5 = { id: "building5", image: "images/image_5.jpg", description: "Building 5" };
+        let building_6 = { id: "building6", image: "images/image_6.jpg", description: "Building 6" };
+
+        let buildings_available = [building_2, building_3, building_4, building_5, building_6];
+        let buildings_added = [building_1];
+        let building_id_selected = "building1";
+
+        window.onload = function () {
+            // Greeting
+            let name = prompt('What is your name?');
+            document.getElementsByTagName('h2')[0].innerText = "Welcome, " + name + "!";
+            // Update the existing item
+            let li = document.getElementById('buildings').firstElementChild.firstElementChild;
+            li.style.fontWeight = "bold";
+            li.onclick = function () {
+                liOnClick(building_1.id, building_1.image);
+            }
+        }
+
+        function liOnClick(id, image) {
+            if (building_id_selected != null)
+                document.getElementById(building_id_selected).style.fontWeight = "normal";
+            document.getElementById(id).style.fontWeight = "bold";
+            document.getElementsByTagName('img')[0].src = image;
+            building_id_selected = id;
+        }
+
+        function addOne() {
+            if (buildings_available.length <= 0) {
+                alert("No more building.");
+            }
+            else {
+                // Select a building randomly
+                let i = parseInt(buildings_available.length * Math.random());
+                let building = buildings_available[i];
+                // Update arrays
+                buildings_added.push(building);
+                buildings_available.splice(i, 1);
+                // Add to the list
+                let li = document.createElement('li');
+                li.id = building.id;
+                li.innerText = building.description;
+                li.onclick = function () {
+                    liOnClick(building.id, building.image);
+                }
+                document.getElementById('buildings').firstElementChild.appendChild(li);
+            }
+        }
+
+        function addAll() {
+            if (buildings_available.length <= 0) {
+                alert("No more building.");
+                return;
+            }
+            // Add buildings if there are still buildings available
+            while (buildings_available.length >= 1)
+                addOne();
+        }
+
+        function resetList() {
+            // Reset arrays
+            buildings_available = [building_1, building_2, building_3, building_4, building_5, building_6];
+            buildings_added = [];
+            // Clear the list
+            let ol = document.getElementById('buildings').firstElementChild;
+            while (ol.firstChild)
+                ol.removeChild(ol.firstChild)
+            building_id_selected = null;
+            // Add one to the list
+            addOne();
+            // Select the first item
+            ol.firstElementChild.onclick();
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Building List</h1>
+        <h2>Welcome!</h2>
+    </header>
+    <div>
+        <div class="image">
+            <img width="400" src="images/image_1.jpg" alt="Building 1" />
+        </div>
+        <div id="buildings">
+            <ol>
+                <li id="building1">Building 1</li>
+            </ol>
+        </div>
+        <input type="button" value="Add Building" onclick="addOne()">
+        <input type="button" value="Add All!" onclick="addAll()">
+        <input type="button" value="Reset" onclick="resetList()">
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Mozilla splash page</title>
+    <style>
+        html {
+            font-family: 'Open Sans', sans-serif;
+            background: url(pattern.png);
+        }
+        
+        body {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            position: relative;
+        }
+        
+        header {
+            height: 150px;
+        }
+        
+        header h1 {
+            font-size: 50px;
+            line-height: 140px;
+            margin: 0 0 0 32.5px;
+        }
+        
+        header img {
+            width: 100px;
+            position: absolute;
+            right: 32.5px;
+            top: 32.5px;
+        }
+        
+        iframe {
+            float: left;
+            margin: 0 20px 20px 0;
+            width: 400px;
+            height: 255px;
+            max-width: 100%;
+        }
+        
+        main {
+            background: #ccc
+        }
+        
+        h2 {
+            margin-top: 0;
+        }
+        
+        p {
+            line-height: 2;
+            /*Refers to the height of the text line*/
+        }
+        
+        .further-info {
+            clear: left;
+            /* The clear CSS property sets whether an element must be moved below (cleared) floating elements that precede it.  */
+            padding: 40px 0;
+            background: cornsilk;
+            box-shadow: inset 0 3px 2px rgba(0, 0, 0, 0.5), inset 0 -3px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .further-info a {
+            width: 25%;
+            display: block;
+            float: left;
+        }
+        
+        .further-info img {
+            max-width: 100%;
+            height: 100px;
+        }
+        
+        .clearfix {
+            max-width: 100%;
+        }
+        
+        .red-panda img {
+            display: block;
+            max-width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header class="mozilla_title">
+        <h1>Mozilla</h1>
+        <img class="logo" src="img/firefox120px.png" alt="Mozilla Firefox" />
+    </header>
+
+    <main>
+        <article>
+            <iframe src="https://www.youtube.com/embed/ojcNcvb1olg" frameborder="0" allowfullscreen></iframe>
+
+            <h2>Rocking the Free Web</h2>
+            <p>Mozilla are a global community of technologists, thinkers, and builders, working together to keep the Internet alive and accessible, so people worldwide can be informed contributors and creators of the Web. We believe this act of human collaboration
+                across an open platform is essential to individual growth and our collective future.</p>
+            <p>Click on the images below to find more information about the cool stuff Mozilla does. <a href="https://www.flickr.com/photos/mathiasappel/21675551065/">Red panda picture</a> by Mathias Appel.</p>
+
+        </article>
+
+        <div class="further-info">
+            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                <img srcset="img/firefox120px.png 120w, img/firefox400px.png 400w" sizes="(max-width: 500px) 120px, 400px" src="img/firefox400px.png" alt="Download Firefox">
+            </a>
+            <a href="https://cattime.com/cat-breeds/british-shorthair-cats">
+                <img srcset="img/kitty120px.png 120w, img/kitty400px.png 400w" sizes="(max-width: 500px) 120px, 400px" src="img/kitty400px.png" alt="Learn about British Shorthair">
+            </a>
+            <a href="https://dogtime.com/dog-breeds/golden-retriever">
+                <img srcset="img/puppy120px.png 120w, img/puppy400px.png 400w" sizes="(max-width: 500px) 120px, 400px" src="img/puppy400px.png" alt="Learn more about Golden Retrievers">
+            </a>
+            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                <img src="img/mdn.svg" alt="Learn web development with MDN">
+            </a>
+            <div class="clearfix"></div>
+        </div>
+
+        <dic class="red-panda">
+            <picture>
+                <source media="(max-width: 600px)" srcset="img/red-panda.jpg">
+                <img src="img/red-panda.jpg" alt="A red panda!!">
+            </picture>
+        </dic>
+
+    </main>
+
+
+</body>
+
+</html>

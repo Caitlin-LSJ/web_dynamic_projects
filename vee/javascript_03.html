@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 03</title>
+    <script>
+        "use strict";
+
+        function pageLoaded() {
+            document.getElementById("header").innerHTML += " (Loaded)";
+        }
+
+        function itemClick(x) {
+            alert('Click: ' + x);
+        }
+
+        function listAdd() {
+            let div_list = document.getElementById("list");
+            let ol_items = div_list.firstElementChild;
+            let li_item_new = document.createElement("li");
+            let dt = new Date();
+            let name = dt.getMinutes() * 60 + dt.getSeconds();
+            li_item_new.addEventListener("click", function () { itemClick(name); });
+            li_item_new.innerHTML = "New! " + name;
+            ol_items.append(li_item_new);
+        }
+
+        function listRemoveFirst() {
+            let div_list = document.getElementById("list");
+            let ol_items = div_list.firstElementChild;
+            if (ol_items.childElementCount <= 0) {
+                alert('Nothing to remove.');
+                return;
+            }
+
+            // 1. Remove a child element:
+            // let li_item_first = ol_items.firstElementChild;
+            // ol_items.removeChild(li_item_first);
+            // 2. Remove yourself
+            let item_first = ol_items.firstElementChild;
+            item_first.remove();
+        }
+    </script>
+</head>
+
+<body onload="pageLoaded()">
+    <h1 id="header">JavaScript DOM</h1>
+    <h2 id="header_two"></h2>
+    <div id="list">
+        <ol>
+            <li>HTML Form: Make, Model, Year (of a car)</li>
+            <li>Button [Add]: Add to an array</li>
+            <li onclick="itemClick('3')">Display the array in a &lt;textarea&gt;</li>
+        </ol>
+    </div>
+    <input type="button" onclick="listAdd()" value="Add"><br>
+    <input type="button" onclick="listRemoveFirst()" value="Remove First"><br>
+    <script>
+        "use strict";
+        /* Note: w3c validator will warn about empty heading <h2>.
+         * Ignore it as it's just a warning, and we NEED this heading for code below!
+         */
+        /* Demo: .innerHTML for the HTML content of a HTML tag */
+        let h = document.getElementById("header_two");
+        h.innerHTML = "Add/Remove Elements, Add Event Listener";
+    </script>
+</body>
+
+</html>

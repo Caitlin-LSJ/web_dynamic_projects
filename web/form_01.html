@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Demo Form 01</title>
+    <style>
+        form {
+            background-color: cornsilk;
+            padding: 10px;
+        }
+        
+        .input-row {
+            margin: 10px;
+        }
+        
+        label {
+            float: left;
+            width: 100px;
+            text-align: right;
+            margin-right: 5px;
+        }
+        
+        input:invalid {
+            border: 2px greenyellow solid;
+        }
+        
+        input:required {
+            box-shadow: 0.0 5px blue;
+            border: 2px red solid;
+        }
+        
+        #movies {
+            border: medium blue solid;
+        }
+        
+        #favorite-city {
+            background-color: lightpink;
+            width: 12em;
+        }
+        
+        #flowers {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+    </style>
+    <script>
+        "use strict";
+    </script>
+</head>
+
+<body>
+    <form action="sample.php" method="get">
+        <div>
+            <label for="name">Name:</label>
+            <input id="name" name="name" type="text" placeholder="Your Username" title="Some title" required="required" spellcheck="false"><br>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input id="password" name="password" type="password" placeholder="Consists at least 8 characters" required="required"><br>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input id="id" name="email" type="email" required="required"><br>
+        </div>
+        <div>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" autorfocus="true" spellcheck="true" placeholder="Tell Us Something">Content</textarea><br>
+        </div>
+        <div>
+            <input type="hidden" value="Token!">
+            <!-- <input type="button" value="Button!" onclick="">
+        <button name="button 2">Somethign here!</button> -->
+            <input type="submit" value="Submit!">
+        </div>
+        <div id="input-row">
+            <label for="favorite-city">Favorite City</label>
+            <select id="favorite-city" name="favorite-city">
+                <option value="kuala-lumpur">Kuala Lumpur</option>
+                <option value="putrajaya">Putrajaya</option>
+                <option value="cyeberjaya">Cyberjaya</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="input-row">
+            <label for="flowers">Flowers:</label>
+            <select id="flowers" name="flowers" multiple="multiple" size="3">
+                <option value="tulip">Tulip</option>
+                <option value="rose">Rose</option>
+                <option value="daisy">Daisy</option>
+                <option value="lily">Lily</option>
+                <option value="marigold">Marigold</option>
+                <option value="sunflowers">Sunflowers</option>
+            </select>
+        </div>
+        <div id="input-row">
+            <label for="movies">Movies:</label>
+            <select id="movies" name="movies" multiple="multiple">
+                <optgroup label="Action">
+                    <option value="tulip">Tulip</option>
+                    <option value="rose">Rose</option>
+                    <option value="daisy">Daisy</option>
+                </optgroup>
+                <optgroup label="Western">
+                    <option value="tulip">Tulip</option>
+                    <option value="rose">Rose</option>
+                    <option value="daisy">Daisy</option>
+                </optgroup>
+                <optgroup label="Doceumentary">
+                    <option value="tulip">Tulip</option>
+                    <option value="rose">Rose</option>
+                    <option value="daisy">Daisy</option>
+                </optgroup>
+                <optgroup label="Romance">
+                    <option value="lily">Lily</option>
+                    <option value="marigold">Marigold</option>
+                    <option value="sunflowers">Sunflowers</option>
+                </optgroup>
+
+            </select>
+        </div>
+    </form>
+</body>
+
+</html>

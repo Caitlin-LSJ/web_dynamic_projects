@@ -1,0 +1,77 @@
+body {
+    background: url(images/dialogue_back.jpg);
+    background-size: cover;
+}
+
+.main {
+    color: black;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.row-image {
+    max-width: 50px;
+    padding: 7px;
+    height: auto;
+}
+
+#img1 {
+    float: left;
+    padding: 5px;
+}
+
+#img2 {
+    float: right;
+    padding: 5px;
+}
+
+.row-title {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration-line: overline underline;
+    text-decoration-style: dashed;
+    text-transform: capitalize;
+    margin: 7px;
+}
+
+.row-title:before {
+    content: "[";
+    color: red;
+}
+
+.row-title:after {
+    content: "] ";
+    color: red;
+}
+
+.row-odd>.row-text {
+    text-align: left;
+    max-width: 80%;
+    padding: 0px 7px;
+}
+
+.row-odd {
+    background-color: lightyellow;
+    padding: 5px;
+}
+
+.row-even {
+    background-color: paleturquoise;
+    padding: 5px;
+}
+
+.row-text p {
+    display: inline;
+}
+
+.row-even>.row-text {
+    padding: 0px 7px;
+    text-align: right;
+}
+
+.row-even>.row-image {
+    text-align: right;
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Task 2: Fun with Form</title>
+    <style>
+        .noBorder {
+            margin-left: 100px;
+        }
+        
+        .my-label {
+            float: left;
+            text-align: right;
+            width: 150px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .my-input {
+            margin-left: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            width: 150px;
+        }
+        
+        #my-submit {
+            width: 7em;
+            margin-left: 200px;
+            margin-top: 15px;
+        }
+        
+        .add_minus {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .my-math-label {
+            float: left;
+            text-align: right;
+            width: 150px;
+        }
+        
+        #sum_op {
+            width: 3em;
+            margin-left: 5px;
+            background-color: cornsilk;
+        }
+        
+        #diff_op {
+            width: 3em;
+            margin-left: 5px;
+            background-color: cornsilk;
+        }
+        
+        .input-invalid {
+            border-color: red;
+            border-style: dashed;
+        }
+    </style>
+    <script>
+        "use strict";
+        //Set global variables
+        let validity = false;
+        let finalMin = 1;
+        let finalMax = 100;
+
+        function onFormSubmit() {
+            //TODO: TO CHANGE THE BG COLOR
+            let colors = document.getElementById("color").value;
+            document.body.style.backgroundColor = colors;
+
+            //TODO: CHECK AND COMPARE NUMBERS
+            let num1 = document.getElementById("number-one").value;
+            let num2 = document.getElementById("number-two").value;
+
+            if ((num1 >= finalMin && num1 <= finalMax) && (num2 >= finalMin && num2 <= finalMax)) {
+                let plus = +num1 + +num2;
+                let sub = num1 - num2;
+
+                document.getElementById("sum_op").value = plus;
+                document.getElementById("diff_op").value = sub;
+            } else {
+                alert("Please fill in two valid numbers.");
+            }
+
+        }
+
+        function prettifyString() {
+            let stringInput = document.getElementById("string").value;
+            let convertLower = stringInput.toLowerCase();
+            let concatInput = convertLower.replace(/\s/g, "");
+            let fullOutput = concatInput.replace(/[0-9]/g, "_")
+            document.getElementById("string").value = fullOutput;
+        }
+
+        function checkWithinRange(value, min, max) {
+            let input = value;
+            let minimum = min;
+            let maximum = max;
+
+            if ((input >= minimum) && (input <= maximum)) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+
+        function validateNumber(id, min, max) {
+            let inputId = id;
+            let baseMin = min;
+            let baseMax = max;
+
+            let userInput = document.getElementById(inputId).value;
+            validity = checkWithinRange(userInput, baseMin, baseMax);
+
+            let invalidInputs = document.getElementById(inputId);
+            if (validity == false) {
+                invalidInputs.classList.add("input-invalid");
+            } else {
+                invalidInputs.classList.remove("input-invalid");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Task 2: Fun with Form</h1>
+    </header>
+    <div class="noBorder">
+        <form id="my-Form" method="post" action="javascript: onFormSubmit()">
+            <div class="my-input-row">
+                <label class="my-label" for="number-one">Number One (1-100):</label>
+                <input id="number-one" class="my-input" type="number" name="number-one" onchange="javascript:validateNumber('number-one', 1, 100);" />
+            </div>
+            <div class="my-input-row">
+                <label class="my-label" for="number-two">Number Two (1-100):</label>
+                <input id="number-two" class="my-input" type="number" name="number-two" onchange="javascript:validateNumber('number-two', 1, 100);" />
+            </div>
+            <div class="my-input-row">
+                <label class="my-label" for="string">String:</label>
+                <input id="string" class="my-input" type="text" name="string" onchange="javascript:prettifyString('string');" />
+            </div>
+
+            <div class="my-input-row">
+                <label class="my-label" for="color">Color:</label>
+                <input id="color" class="my-input" name="color" type="color" />
+            </div>
+            <input id="my-submit" class="my-input" type="submit" value="Process" />
+
+            <div class="add_minus">
+                <label class="my-math-label" for="sum_op">Sum:</label>
+                <input id="sum_op" class="my-addition" name="sum" type="text" disabled />
+                <!-- Disallows user from inputing values-->
+            </div>
+
+            <div class="add_minus">
+                <label class="my-math-label" for="diff_op">Difference:</label>
+                <input id="diff_op" class="my-subtract" name="difference" type="text" disabled />
+                <!-- Disallows user from inputing values-->
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

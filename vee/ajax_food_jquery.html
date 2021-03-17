@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>Malaysia Food</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        "use strict";
+
+        let xhr;
+
+        window.onload = function () {
+            $('#fetch').click(fetchMenu);
+            // Alternative syntax:
+            // $('#fetch').click(function () { fetchMenu(); });
+        }
+
+        function fetchMenu() {
+            let category = $('#category').val();
+            let format = $('#format').val();
+            let paramObj = {
+                category: category,
+                format: format,
+            };
+            let url = "ajax_food_provider.php?" + $.param(paramObj);
+
+            switch (format) {
+                case "xml":
+                    // $.ajax({
+                    //     url: url,
+                    //     type: 'GET',
+                    //     success: buildMenuXML,
+                    // });
+                    // $.ajax({
+                    //     url: url,
+                    //     type: 'GET',
+                    //     // success: buildMenuXML,
+                    // }).done(function (xml) {
+                    //     buildMenuXML(xml);
+                    // });
+                    $.get(url, "xml", buildMenuXML);
+                    break;
+                case "json":
+                    // $.ajax({
+                    //     url: url,
+                    //     type: 'GET',
+                    //     dataType: 'json',
+                    //     success: buildMenuJSON,
+                    // });
+                    // $.get(url, buildMenuJSON);
+                    $.getJSON(url, buildMenuJSON);
+                    break;
+            }
+        }
+
+        function buildMenuXML(xml) {
+            $('#main').children().remove();
+            $(xml).find('food').each(function (index, food) {
+                let food_name = $($(food).find('name')).first()[0].textContent;
+                let food_description = $($(food).find('description')).first()[0].textContent;
+                let food_price = $($(food).find('price')).first()[0].textContent;
+                $('#main')
+                    .append($('<h3>').text(food_name))
+                    .append($('<p>').text(food_description))
+                    .append($('<p>').text('RM ' + (food_price / 100).toFixed(2)));
+            });
+        }
+
+        function buildMenuJSON(json) {
+            $('#main').children().remove();
+            let food_list = json;
+            for (let i = 0; i < food_list.length; i++) {
+                let food = food_list[i];
+                $('#main')
+                    .append($('<h3>').text(food.name))
+                    .append($('<p>').text(food.description))
+                    .append($('<p>').text('RM ' + (food.price / 100).toFixed(2)));
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Malaysia Food</h1>
+    <div>
+        <label for="category"><b>Category</b></label>
+        <select id="category">
+            <option value="rice">Rice</option>
+            <option value="miscellaneous">Miscellaneous</option>
+        </select>
+    </div>
+    <div>
+        <label for="format"><b>Format</b></label>
+        <select id="format">
+            <option value="json">JSON</option>
+            <option value="xml">XML</option>
+        </select>
+    </div>
+    <button id="fetch">Fetch!</button>
+    <hr>
+    <div id="main"></div>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Demo Form 01</title>
+        <style>
+form {
+    padding: 10px;
+}
+
+.input-row {
+    margin: 10px;
+}
+
+label {
+    float: left;
+    width: 100px;
+    text-align: right;
+    margin-right: 5px;
+}
+
+input:invalid {
+    border: 2px red solid;
+}
+
+input:required {
+    box-shadow: 0 0 5px blue;
+}
+
+#favorite-city {
+    background-color: lightgoldenrodyellow;
+    width: 12em;
+}
+
+#flowers {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#movies {
+    border: medium blue solid;
+}
+        </style>
+        <script>
+"use strict";
+        </script>
+    </head>
+    <body>
+        <form action="showpost.php" method="post">
+            <div class="input-row">
+                <label for="name">Name:</label>
+                <input id="name" name="name" type="text" placeholder="Your Username" title="Some title" required="required" spellcheck="false">
+            </div>
+            <div class="input-row">
+                <label for="password">Password:</label>
+                <input id="password" name="password" type="password" placeholder="Consists of at least 8 charaters" required="required">
+            </div>
+            <div class="input-row">
+                <label for="email">Email:</label>
+                <input id="email" name="email" type="email" required="required">
+            </div>
+            <div class="input-row">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" autofocus="autofocus" cols="30" rows="8" placeholder="Tell us something!"></textarea>
+            </div>
+            <div class="input-row">
+                <label for="favorite-city">Favourite City:</label>
+                <select id="favorite-city" name="favorite-city">
+                    <option value="kuala-lumpur">Kuala Lumpur</option>
+                    <option value="putrajaya">Putrajaya</option>
+                    <option value="cyberjaya">Cyberjaya</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="input-row">
+                <label for="flowers">Flowers:</label>
+                <select id="flowers" name="flowers[]" multiple="multiple" size="3">
+                    <option value="acacia">Acacia</option>
+                    <option value="begonia">Begonia</option>
+                    <option value="daffodil">Daffodil</option>
+                    <option value="tulip">Tulip</option>
+                    <option value="rose">Rose</option>
+                    <option value="lily">Lily</option>
+                </select>
+            </div>
+            <div class="input-row">
+                <label for="movies">Movies:</label>
+                <select id="movies" name="movies" multiple="multiple">
+                    <optgroup label="Action">
+                        <option value="alita">Alita</option>
+                        <option value="captain-america">Captain America</option>
+                        <option value="divergent">Divergent</option>
+                    </optgroup>
+                    <optgroup label="Sci-Fi">
+                        <option value="oblivion">Oblivion</option>
+                        <option value="interstellar">Interstellar</option>
+                        <option value="jupiter-ascending">Jupiter Ascending</option>
+                    </optgroup>
+                    <optgroup label="Comedy">
+                        <option value="guardians-1">Guardians of The Galaxy</option>
+                        <option value="guardians-2">Guardians of The Galaxy Vol. 2</option>
+                    </optgroup>
+                </select>
+            </div>
+            <input type="hidden" value="Token">
+            <input type="submit" value="Submit!">
+        </form>
+    </body>
+</html>

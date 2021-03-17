@@ -1,0 +1,77 @@
+<!DOCTYPE html>>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="witdth=device-width, initial-scale=1.0">
+    <title>JavaScript 02</title>
+    <script>
+        "use strict";
+
+        function listAdd() {
+            console.log("Add!");
+            let div_list = document.getElementById("list");
+            let ol_items = div_list.firstElementChild;
+            let li_item_new = document.createElement("li");
+            let dt = new Date();
+            let name = "New! " + (dt.getMinutes() * 60 + dt.getSeconds());
+            li_item_new.addEventListener("click", function() {
+                itemClick('Hooray!');
+            });
+            li_item_new.innerHTML = "New! " + name;
+            ol_items.append(li_item_new);
+        }
+
+        function listFirst() {
+            console.log("Remove!");
+            let div_list = document.getElementById("list");
+            let ol_items = div_list.firstElementChild;
+            if (ol_items.childElementCount <= 0) {
+                alert('List is empty!');
+                return;
+            }
+
+            //remove an element can be done by:
+            //1 .Remove a child element:
+            // let li_item_first = ol_items.firstElementChild;
+            // ol_items.removeChild(li_item_first);
+
+            //2. Remove itself:
+            let item_first = ol_items.firstElementChild;
+            item_first.remove();
+
+        }
+
+        function itemClick(x) {
+            alert('Click: ' + x);
+        }
+
+        function pageLoaded() {
+            document.getElementById("header").innerHTML += " (Loaded)";
+        }
+    </script>
+
+</head>
+
+<body onload="pageLoaded()">
+    <h1 id="header">JavaScript DOM</h1>
+    <h2 id="header2">JavaScript DOM</h2>
+    <div id="list">
+        <ol>
+            <li id="TRY">Form: Make, Model, Year (of a car)</li>
+            <li>Button [Add]: Add to an array</li>
+            <li onclick="javascript: itemClick('3')">Display the array in a &lt;textarea&gt;</li>
+        </ol>
+    </div>
+
+    <input type="button" onclick="javascript: listAdd()" value="Add"><br>
+    <input type="button" onclick="javascript: listFirst()" value="List Remove First"><br>
+
+    <script>
+        "use strict";
+        let h = document.getElementById("header2");
+        h.innerHTML = "Add/Remove Elements, Add Event Listener"; //
+    </script>
+</body>
+
+</html>

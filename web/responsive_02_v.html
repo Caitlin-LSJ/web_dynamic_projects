@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive 02 (Tutorial Question)</title>
+    <style>
+        header {
+            padding: 10px;
+            background-color: bisque;
+            text-align: center;
+        }
+
+        nav {
+            background-color: aquamarine;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 200px;
+            float: left;
+        }
+
+        nav select {
+            display: none;
+        }
+
+        section {
+            margin-left: 220px;
+        }
+
+        section h2 {
+            padding: 10px;
+            margin-left: 10px;
+            background-color: lightblue;
+        }
+
+        article {
+            padding: 10px;
+            margin: 10px;
+            float: left;
+            width: 300px;
+            color: white;
+            background-color: blue;
+        }
+
+        footer {
+            padding: 5px;
+            clear: both;
+            background-color: bisque;
+        }
+
+        header,
+        nav,
+        h2,
+        article,
+        footer {
+            border-radius: 10px;
+        }
+
+        @media screen and (max-width: 600px) {
+            header {
+                text-align: left;
+            }
+
+            nav {
+                width: auto;
+                float: none;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            nav select {
+                display: block;
+            }
+
+            section {
+                margin-left: 0;
+            }
+
+            section h2 {
+                margin-left: 0;
+            }
+
+            article {
+                margin-left: 0;
+                margin-right: 0;
+                width: auto;
+                float: none;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            header h2 {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Lyric Collection</h1>
+        <h2>Fluid Layout</h2>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="">Page One</a></li>
+            <li><a href="">Page Two</a></li>
+            <li><a href="">Page Three</a></li>
+        </ul>
+
+        <select>
+            <option>Page One</option>
+            <option>Page Two</option>
+            <option>Page Three</option>
+        </select>
+    </nav>
+
+    <section>
+        <!-- Refer to https://www.w3.org/wiki/HTML/Usage/Headings/Missing on why we add this -->
+        <h2>Rasa Sayang</h2>
+
+        <article>
+            <h3>Rasa Sayang</h3>
+            <p>
+                Rasa sayang, hey!<br>
+                Rasa sayang sayang, hey!<br>
+                Hey, lihat nona jauh,<br>
+                Rasa sayang sayang, hey!
+            </p>
+        </article>
+
+        <article>
+            <h3>Buah Cempedak...</h3>
+            <p>Buah cempedak di luar pagar,<br>
+                Ambil galah tolong jolokkan;<br>
+                Saya budak baru belajar,<br>
+                Kalau salah tolong tunjukkan.<br>
+            </p>
+        </article>
+
+        <article>
+            <h3>Pulau Pandan...</h3>
+            <p>
+                Pulau pandan jauh ke tengah,
+                Gunung daik bercabang tiga;
+                Hancur badan di kandung tanah,
+                Budi yang baik dikenang juga.
+            </p>
+        </article>
+    </section>
+
+    <footer>
+        <p>
+            Designed by: BUW3213
+        </p>
+    </footer>
+
+</body>
+
+</html>

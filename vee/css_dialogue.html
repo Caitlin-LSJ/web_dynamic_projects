@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS: Dialogue</title>
+    <style>
+        body {
+            background-image: url("images/dialogue_back.jpg");
+        }
+
+        .main {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .row-image {
+            width: 50px;
+        }
+
+        .row-odd>img {
+            float: left;
+            margin-right: 5px;
+        }
+
+        .row-even>img {
+            float: right;
+            margin-left: 5px;
+        }
+
+        div.row-odd {
+            background-color: lightyellow;
+        }
+
+        div.row-even {
+            background-color: paleturquoise;
+        }
+
+        div.row-odd,
+        div.row-even {
+            padding: 5px;
+            /* Wraps content. */
+            clear: both;
+            overflow: auto;
+        }
+
+        .row-title {
+            font-family: sans-serif;
+            font-weight: bold;
+            font-style: italic;
+            text-decoration-line: overline underline;
+            text-decoration-style: dashed;
+            text-transform: capitalize;
+        }
+
+        .row-title:before {
+            content: '[';
+            color: red;
+        }
+
+        .row-title:after {
+            content: ']';
+            color: red;
+        }
+
+        .row-title,
+        .row-content {
+            display: inline;
+        }
+
+        .row-odd {
+            text-align: left;
+        }
+
+        .row-even {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body style="padding: 0px; margin: 0px;">
+    <h1>Classical Movie Dialogue</h1>
+    <h2>BEGIN</h2>
+    <div class="main">
+        <div class="row-odd">
+            <img id="img1" class="row-image" src="images/dialogue_img1.jpg" alt="yoda">
+            <div class="row-text">
+                <p class="row-title">yoda</p>
+                <p class="row-content">Told you, did he?</p>
+            </div>
+        </div>
+        <div class="row-even">
+            <img id="img2" class="row-image" src="images/dialogue_img2.jpg" alt="luke">
+            <div class="row-text">
+                <p class="row-title">luke</p>
+                <p class="row-content">Yes.</p>
+            </div>
+        </div>
+        <div class="row-odd">
+            <div class="row-text">
+                <p class="row-title">yoda</p>
+                <p class="row-content">Unexpected this is, and unfortunate.</p>
+            </div>
+        </div>
+        <div class="row-even">
+            <div class="row-text">
+                <p class="row-title">luke</p>
+                <p class="row-content">Unfortunate that I know the truth?</p>
+            </div>
+        </div>
+        <div class="row-odd">
+            <div class="row-text">
+                <p class="row-title">yoda</p>
+                <p class="row-content">No! Unfortunate that you rushed to face him... that incomplete was your training.
+                    Not ready for the burden were you.</p>
+            </div>
+        </div>
+    </div>
+    <h2>END</h2>
+</body>
+
+</html>
